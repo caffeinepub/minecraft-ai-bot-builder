@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* JetBrains Mono - monospace for code/logs */
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono[wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Mona Sans - display headings */
+@font-face {
+  font-family: "Mona Sans";
+  src: url("/assets/fonts/MonaSans[wdth,wght].woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Geist Mono - UI mono */
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono[wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.375rem;
+
+    /* Minecraft Dark Theme — Deep obsidian + grass green */
+    --background:       0.1  0.005 260;
+    --foreground:       0.92 0.01  260;
+    --card:             0.14 0.008 260;
+    --card-foreground:  0.92 0.01  260;
+    --popover:          0.16 0.008 260;
+    --popover-foreground: 0.92 0.01 260;
+
+    /* Primary: Minecraft grass green */
+    --primary:          0.72 0.19  145;
+    --primary-foreground: 0.08 0.005 260;
+
+    /* Secondary: stone gray */
+    --secondary:        0.22 0.008 260;
+    --secondary-foreground: 0.85 0.01 260;
+
+    /* Muted: subtle dark */
+    --muted:            0.18 0.006 260;
+    --muted-foreground: 0.52 0.015 260;
+
+    /* Accent: emerald highlight */
+    --accent:           0.22 0.015 145;
+    --accent-foreground: 0.9  0.01  145;
+
+    /* Destructive: red */
+    --destructive:      0.62 0.22  25;
+    --destructive-foreground: 0.98 0.005 260;
+
+    /* Borders & inputs */
+    --border:           0.22 0.008 260;
+    --input:            0.2  0.008 260;
+    --ring:             0.72 0.19  145;
+
+    /* Charts */
+    --chart-1:          0.72 0.19  145;
+    --chart-2:          0.6  0.15  200;
+    --chart-3:          0.75 0.18  90;
+    --chart-4:          0.65 0.22  25;
+    --chart-5:          0.55 0.12  260;
+
+    /* Sidebar: almost black */
+    --sidebar:                     0.09 0.005 260;
+    --sidebar-foreground:          0.85 0.01  260;
+    --sidebar-primary:             0.72 0.19  145;
+    --sidebar-primary-foreground:  0.08 0.005 260;
+    --sidebar-accent:              0.15 0.008 260;
+    --sidebar-accent-foreground:   0.85 0.01  260;
+    --sidebar-border:              0.18 0.008 260;
+    --sidebar-ring:                0.72 0.19  145;
+
+    /* Custom Minecraft tokens */
+    --mc-green:         0.72 0.19  145;
+    --mc-green-dark:    0.55 0.18  145;
+    --mc-stone:         0.45 0.008 260;
+    --mc-dirt:          0.42 0.08  50;
+    --mc-wood:          0.55 0.09  65;
+    --mc-obsidian:      0.08 0.005 260;
+    --mc-gold:          0.78 0.18  85;
+    --mc-diamond:       0.72 0.14  200;
+    --mc-redstone:      0.62 0.22  25;
+    --mc-emerald:       0.68 0.20  155;
+    --mc-lapis:         0.45 0.18  250;
+    --mc-iron:          0.72 0.005 260;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Mona Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: oklch(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(var(--border));
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(var(--muted-foreground));
+  }
+}
+
+/* Pixel art canvas — no anti-aliasing */
+canvas.pixel-canvas {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Minecraft block pixel art via CSS */
+.mc-block {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Glow effects for status indicators */
+.glow-green {
+  box-shadow: 0 0 8px oklch(0.72 0.19 145 / 0.6), 0 0 20px oklch(0.72 0.19 145 / 0.3);
+}
+
+.glow-red {
+  box-shadow: 0 0 8px oklch(0.62 0.22 25 / 0.6), 0 0 20px oklch(0.62 0.22 25 / 0.3);
+}
+
+.glow-yellow {
+  box-shadow: 0 0 8px oklch(0.78 0.18 85 / 0.6), 0 0 20px oklch(0.78 0.18 85 / 0.3);
+}
+
+/* Pixel border effect */
+.pixel-border {
+  box-shadow:
+    inset -2px -2px 0px oklch(0.0 0 0 / 0.5),
+    inset 2px 2px 0px oklch(1 0 0 / 0.1);
+}
+
+/* Behavior card hover */
+.behavior-card {
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.behavior-card:hover {
+  border-color: oklch(var(--mc-green));
+  transform: translateY(-1px);
+}
+.behavior-card.selected {
+  border-color: oklch(var(--mc-green));
+  background: oklch(var(--mc-green) / 0.1);
+}
+
+/* Mono font for log/code areas */
+.font-mono-mc {
+  font-family: "JetBrains Mono", "Geist Mono", monospace;
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+/* Step wizard progress */
+.step-connector {
+  transition: background-color 0.3s ease;
+}
+
+/* Noise texture overlay for backgrounds */
+.noise-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
